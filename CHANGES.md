@@ -60,6 +60,7 @@
 - Fix thumbnail not taking frame blending mode [Taiga #2301](https://tree.taiga.io/project/penpot/issue/2301)
 - Fix import/export with SVG edge cases [Taiga #2389](https://tree.taiga.io/project/penpot/issue/2389)
 - Show correctly group types label in handoff [Taiga #2482](https://tree.taiga.io/project/penpot/issue/2482)
+- Display view mode buttons always centered in viewer [#Taiga 2466](https://tree.taiga.io/project/penpot/issue/2466)
 
 ### :arrow_up: Deps updates
 

@@ -42,10 +42,9 @@
                 (bw/configure-page! page options)
                 (bw/navigate! page uri)
                 (bw/wait-for page "#screenshot")
-                (if save-path
-                  (bw/pdf page {:save-path save-path})
-                  (bw/pdf page)))))]
-
+                (p/delay 2000 (if save-path
+                                (bw/pdf page {:save-path save-path})
+                                (bw/pdf page))))))]
     (bw/exec! handle)))
 
 (s/def ::name ::us/string)

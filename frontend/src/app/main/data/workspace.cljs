@@ -1701,7 +1701,32 @@
               (cond
                 (and (selected-frame? state) (not has-frame?))
                 (let [frame-id (first page-selected)
-                      delta    (get page-objects frame-id)]
+                      frame-object (get page-objects frame-id)
+
+                      origin-frame-id (:frame-id (first selected-objs))
+                      origin-frame-object (get page-objects origin-frame-id)
+
+                      ;; - The pasted object position must be limited to container boundaries
+                      ;; - The distace to the width and height in the origin frame must be respected if possible
+
+                      margin-x (- (:width origin-frame-object) (+ (:x wrapper) (:width wrapper)))
+                      margin-x (min margin-x (- (:width frame-object) (:width wrapper)))
+
+                      margin-y (- (:height origin-frame-object) (+ (:y wrapper) (:height wrapper)))
+                      margin-y (min margin-y (- (:height frame-object) (:height wrapper)))
+
+                      ;; Pasted objects mustn't exceed the selected frame y limit
+                      paste-x (if (> (+ (:width wrapper) (:x1 wrapper)) (:width frame-object))
+                                (+ (- (:x frame-object) (:x orig-pos)) (- (:width frame-object) (:width wrapper) margin-x))
+                                (:x frame-object))
+
+                      ;; Pasted objects mustn't exceed the selected frame x limit
+                      paste-y (if (> (+ (:height wrapper) (:y1 wrapper)) (:height frame-object))
+                                (+ (- (:y frame-object) (:y orig-pos)) (- (:height frame-object) (:height wrapper) margin-y))
+                                (:y frame-object))
+
+                      delta    (gpt/point paste-x paste-y)]
+
                   [frame-id frame-id delta])
 
                 (empty? page-selected)

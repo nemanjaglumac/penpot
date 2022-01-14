@@ -5,6 +5,7 @@
 ### :boom: Breaking changes
 ### :sparkles: New features
 
+- Limit pasted object position to container boundaries [Taiga #2449](https://tree.taiga.io/project/penpot/us/2449).
 - Ability to ignore background when exporting an artboard [Taiga #1395](https://tree.taiga.io/project/penpot/us/1395).
 - Show color hex or name on hover [Taiga #2413](https://tree.taiga.io/project/penpot/us/2413).
 - Add shortcut to create artboard from selected objects [Taiga #2412](https://tree.taiga.io/project/penpot/us/2412).
